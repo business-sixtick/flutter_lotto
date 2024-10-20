@@ -47,7 +47,10 @@
 ***
 
 ### 화면 구성 및 모델 구성
+- #### flutter create .
+- #### https://m.dhlottery.co.kr/gameResult.do?method=byWin
 - #### vscode 확장 설치 : Draw.io Integration
+- 
 
 ***
 
