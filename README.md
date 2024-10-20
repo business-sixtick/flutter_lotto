@@ -1,5 +1,5 @@
-# flutter_lotto
-## 플러터 기반의 로또 번호 생성기
+# 제목 : flutter_lotto
+## 부제 : 플러터 기반의 로또 번호 생성기
 
 ## project flow
 1. 깃 저장소 생성 및 연동 20241020
