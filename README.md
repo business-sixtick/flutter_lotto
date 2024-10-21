@@ -47,8 +47,11 @@
 ***
 
 ### 화면 구상 및 모델 정의
-```flutter create . ```
-- #### [동행복권 당첨번호](https://m.dhlottery.co.kr/gameResult.do?method=byWin)
+```
+// 플러터 프로젝트 생성
+flutter create . 
+```
+- #### [동행복권 당첨번호](!https://m.dhlottery.co.kr/gameResult.do?method=byWin)
 - #### vscode 확장 설치 : Draw.io Integration
 - 
 
