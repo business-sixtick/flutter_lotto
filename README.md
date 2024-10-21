@@ -51,12 +51,9 @@
 // 플러터 프로젝트 생성
 flutter create . 
 ```
-- #### [동행복권 당첨번호](https://m.dhlottery.co.kr/gameResult.do?method=byWin)
+- #### [동행복권 당첨번호][win]: https://m.dhlottery.co.kr/gameResult.do?method=byWin "동행복권 홈페이지 바로가기"
 - #### vscode 확장 설치 : Draw.io Integration
 - 
-출처는 [위키백과][wiki]입니다.
-
-[wiki]: http://en.wikipedia.org/wiki/Markdown#Syntax_examples "위키백과 Markdown 항목"
 ***
 
 ### 프로그램 구현
