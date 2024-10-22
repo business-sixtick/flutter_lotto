@@ -1,6 +1,8 @@
 import 'package:flutter_lotto/lotto.dart';
 
 
-void main(){
-  print(Lotto.getWins());
+void main() async {
+  Lotto  lotto = await Lotto.create();
+  // print(lotto.wins);
+  print(lotto.createWin(10));
 }
