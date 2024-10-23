@@ -64,17 +64,18 @@ class Lotto{
   }
 
   static Future<List<List<int>>> _getWins() async {
-    var csvData;
+    // TODO : 파일 접근 하는 방식을 수정해야함.. 데탑이랑 호환이 안됨.  dart:io말고 플러터꺼써야댐.
+    var csvData = await rootBundle.loadString('assets/lotto.csv');
     // CSV 파일 읽기
-    if (kIsWeb){
-      csvData = await rootBundle.loadString('asset/lotto.csv');
-    }else{
-      final file = io.File('asset/lotto.csv');
-      if (!await file.exists()){
-        throw 'asset/lotto.csv 파일을 준비해 주세요.';
-      }
-      csvData = await file.readAsString();
-    }
+    // if (kIsWeb){
+    //   csvData = await rootBundle.loadString('asset/lotto.csv');
+    // }else{
+    //   final file = io.File('asset/lotto.csv');
+    //   if (!await file.exists()){
+    //     throw 'asset/lotto.csv 파일을 준비해 주세요.';
+    //   }
+    //   csvData = await file.readAsString();
+    // }
     // print(csvData);
     // print(csvData.split('\r\n').length);
     

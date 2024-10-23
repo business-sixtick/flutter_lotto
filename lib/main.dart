@@ -29,6 +29,7 @@ class UserController extends GetxController {
 
 late Lotto lotto;
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();  // Flutter 바인딩을 초기화
   debugPrint('main in');
   lotto = await Lotto.create();
   debugPrint('main lotto');
@@ -43,7 +44,7 @@ class CircleNumber extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10),
+      margin: EdgeInsets.all(2),
       decoration: BoxDecoration(
         color: Colors.white,
         shape: BoxShape.circle
@@ -76,7 +77,8 @@ class MyApp extends StatelessWidget{
 
   void tapPage(int index){
     userController.selectPage.value = index;
-    controller.animateToPage(index, duration: Duration(seconds: 1), curve: Curves.fastOutSlowIn);
+    controller.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.fastOutSlowIn);
+    // controller.initialPage = 1;
   }
   
   @override  
@@ -156,6 +158,7 @@ class MyApp extends StatelessWidget{
         //   ),
         body: PageView(
           controller: controller,
+          onPageChanged: (int page)=> userController.selectPage.value = page,
           children: [
             Container(
               margin: const EdgeInsets.all(20),
@@ -183,7 +186,13 @@ class MyApp extends StatelessWidget{
                         Obx(() => CircleNumber('${userController.win.value.win4}')),
                         Obx(() => CircleNumber('${userController.win.value.win5}')),
                         Obx(() => CircleNumber('${userController.win.value.win6}')),
-                        Icon(Icons.add),
+
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment : MainAxisAlignment.center,
+                      children: [
+                        Text('보너스 번호 : ', style: TextStyle(fontSize: 30),),
                         Obx(() => CircleNumber('${userController.win.value.win7}')),
                       ],
                     )

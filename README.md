@@ -54,8 +54,8 @@ flutter create .
 - #### [동행복권 당첨번호][win]
 [win]: https://m.dhlottery.co.kr/gameResult.do?method=byWin "동행복권 홈페이지 바로가기"
 - #### vscode 확장 설치 : Draw.io Integration
-![UML](./asset/uml.png)
-![PAGES](./asset/pages.png)
+![UML](assets/uml.png)
+![PAGES](assets/pages.png)
 ***
 
 ### 프로그램 구현
@@ -63,7 +63,7 @@ flutter create .
 - #### 최근 당첨 번호 페이지 구현
 - #### 최근 10일 당첨번호 기준으로 가중치 적용한 추천번호 생성 페이지 구현
 - #### 당첨번호 이력 페이지 구현
-![SCREEN](./asset/screen.png)
+![SCREEN](assets/screen.png)
 ***
 
 ### 테스트 및 배포
