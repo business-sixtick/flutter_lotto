@@ -67,7 +67,7 @@ flutter create .
 ***
 
 ### 테스트 및 배포
-
+- #### google play console 개발자 계정 승인 대기중... 20241023
 ***
 
 ### 광고 삽입
