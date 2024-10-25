@@ -2,23 +2,9 @@ import 'package:flutter/material.dart';
 import 'lotto.dart';
 import 'package:get/get.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+// import 'package:flutter/foundation.dart';
 
 
-class Win {
-  late int turn;
-  late int date;
-  late String day;
-  late int win1;
-  late int win2;
-  late int win3;
-  late int win4;
-  late int win5;
-  late int win6;
-  late int win7;
-  Win(this.turn, this.date, this.win1, this.win2, this.win3, this.win4, this.win5, this.win6, this.win7){
-    day = DateTime.fromMillisecondsSinceEpoch(date).toString();
-  }
-}
 
 // UserController 클래스 정의
 class UserController extends GetxController {
@@ -29,12 +15,16 @@ class UserController extends GetxController {
 
 late Lotto lotto;
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();  // Flutter 바인딩을 초기화
+  WidgetsFlutterBinding.ensureInitialized();  // Flutter 바인딩을 초기화  . path_provider 와 관계가 있다. 
   debugPrint('main in');
   lotto = await Lotto.create();
   debugPrint('main lotto');
+  // debugPrint('lotto.directory : ${lotto.directory}');
   runApp(MyApp());
   debugPrint('main out');
+
+  debugPrint('lotto.wins.length.toString() : ${lotto.wins.length.toString()}');
+  debugPrint('lotto.wins.last : ${lotto.wins.last}');
 }
 
 class CircleNumber extends StatelessWidget{
@@ -64,12 +54,12 @@ class MyApp extends StatelessWidget{
   
 
   MyApp({super.key}){
-    // wins = lotto.Lotto().wins;
+    wins = lotto.wins;
     // Lotto.getWins().then((onValue) => debugPrint(onValue.toString()));
     //debugPrint('main : ${wins.last[1].toString()}');
   }
 
-  // late var wins;// = await lotto.Lotto().wins;
+  late var wins;// = await lotto.Lotto().wins;
   // debugPrint('main : ${wins.last[1].toString()}');
   // final PageController controller = PageController(initialPage: 1, viewportFraction: 0.7);
   PageController controller = PageController(initialPage: 1, viewportFraction: 1);
@@ -223,6 +213,8 @@ class MyApp extends StatelessWidget{
                       ),
                       Container(height: 200,),
                       ElevatedButton(onPressed: (){
+                        //  debugPrint(Sqlite.table);
+                        
                         List<int> createWins = lotto.createWin(10);
                         userController.createWin.value = Win(0, DateTime.now().millisecondsSinceEpoch, createWins[0], createWins[1], createWins[2], createWins[3], createWins[4], createWins[5], 0);
                       }, child: Text('생성'))
@@ -238,6 +230,7 @@ class MyApp extends StatelessWidget{
               child: Center(
                 child: ListView.separated(
                   itemCount: lotto.wins.length,
+                  // itemCount: 0,
                   itemBuilder: (context, index){
                     return ListTile(
                       leading: CircleAvatar(radius: 25, child: Text(' >> '),),
@@ -251,17 +244,21 @@ class MyApp extends StatelessWidget{
                         '${lotto.wins[lotto.wins.length - (index + 1)][8]}  '
                       ),
                       subtitle: Text("${DateTime.fromMillisecondsSinceEpoch(lotto.wins[lotto.wins.length - (index + 1)][1]).toString().split(' ')[0]}"),
-                      // trailing: Row(
-                      //   children: [
-                          // CircleNumber('${lotto.wins[lotto.wins.length - (index + 1)][2]}'),
-                          // CircleNumber('${lotto.wins[lotto.wins.length - (index + 1)][3]}'),
-                          // CircleNumber('${lotto.wins[lotto.wins.length - (index + 1)][4]}'),
-                          // CircleNumber('${lotto.wins[lotto.wins.length - (index + 1)][5]}'),
-                          // CircleNumber('${lotto.wins[lotto.wins.length - (index + 1)][6]}'),
-                          // CircleNumber('${lotto.wins[lotto.wins.length - (index + 1)][7]}'),
-                          // Icon(Icons.add),
-                          // CircleNumber('${lotto.wins[lotto.wins.length - (index + 1)][8]}'),
-                        // ],
+                      // trailing: Container(
+                      //   width: 500,
+                      //   child: Row(
+                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //     children: [
+                      //       CircleNumber('${lotto.wins[lotto.wins.length - (index + 1)][2]}'),
+                      //       CircleNumber('${lotto.wins[lotto.wins.length - (index + 1)][3]}'),
+                      //       CircleNumber('${lotto.wins[lotto.wins.length - (index + 1)][4]}'),
+                      //       CircleNumber('${lotto.wins[lotto.wins.length - (index + 1)][5]}'),
+                      //       CircleNumber('${lotto.wins[lotto.wins.length - (index + 1)][6]}'),
+                      //       CircleNumber('${lotto.wins[lotto.wins.length - (index + 1)][7]}'),
+                      //       Icon(Icons.add),
+                      //       CircleNumber('${lotto.wins[lotto.wins.length - (index + 1)][8]}'),
+                      //     ],
+                      //   ),
                       // ),
 
                     );
