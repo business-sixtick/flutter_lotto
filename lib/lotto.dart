@@ -119,10 +119,10 @@ class Lotto{
     var list = wins;
     int today = DateTime.now().millisecondsSinceEpoch;
     int lately = list.last[1];
+    final int nextTime = const Duration(days: 7, hours:21).inMilliseconds;
+    if (today - lately < nextTime) return list;
 
-    if (today - lately < 604800000) return list;
-
-    while (today - lately > 604800000) {
+    while (today - lately > nextTime) {
       var item = await _getFromHomepageWins(list.length + 1);
       list.add(item);
       lately = item[1];

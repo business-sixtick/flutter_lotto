@@ -154,7 +154,7 @@ class MyApp extends StatelessWidget{
               margin: const EdgeInsets.all(20),
               color: Colors.red,
               child: Center(
-                child: Obx((){return Text('${userController.win.value.turn}');}) 
+                child: Image.asset('assets/mybankqr.png')
               ),
             ),
             Container(

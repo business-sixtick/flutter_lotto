@@ -1,4 +1,3 @@
-import 'package:flutter_lotto/lotto.dart';
 
 
 void main() async {
