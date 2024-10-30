@@ -182,7 +182,14 @@ class Lotto{
     Set<int> win = {};
     while(win.length < 6){
       // win.add(math.Random().nextInt(45) + 1);
-      win.add(weightList[math.Random().nextInt(weightList.length)]);
+      int num = math.Random().nextInt(weightList.length);
+      int selectNum = weightList[num];
+      // print('$num $selectNum');
+      win.add(selectNum);
+      do{
+        weightList.remove(selectNum);
+      }while(weightList.contains(selectNum));
+      // print(weightList);
     }
     List<int> list  = win.toList();
     list.sort();
