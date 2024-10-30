@@ -1,5 +1,8 @@
 name: flutter_lotto
-description: "A new Flutter project."
+description: >
+  Flutter Lotto 앱
+  - 1.0.0: 첫 빌드
+  - 1.0.1: 번호 생성시 뽑은 번호 가중치에서 삭제후 다음 번호 뽑음
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -16,7 +19,10 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+1
+version: 1.0.1+3
+
+# flutter build appbundle --release -v
+
 
 environment:
   sdk: ^3.5.3

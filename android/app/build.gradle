@@ -47,6 +47,9 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.release
+            ndk {
+                debugSymbolLevel = "SYMBOL_TABLE" // 또는 DebugSymbolLevel.FULL
+            }
         }
         debug {
             signingConfig signingConfigs.debug
@@ -58,3 +61,24 @@ android {
 flutter {
     source = "../.."
 }
+
+// android {
+//     ...
+//     buildTypes {
+//         release {
+//             ...
+//             // 파일 이름에 버전 정보를 포함
+//             applicationVariants.all { variant ->
+//                 variant.outputs.all { output ->
+//                     def appName = "flutter_lotto" // 앱 이름 또는 프로젝트 이름
+//                     def versionName = variant.versionName
+//                     def versionCode = variant.versionCode
+//                     def fileName = "${appName}-v${versionName}(${versionCode}).aab" // .aab 대신 .apk 사용 가능
+
+//                     // 파일 이름 지정
+//                     outputFileName = fileName
+//                 }
+//             }
+//         }
+//     }
+// }
