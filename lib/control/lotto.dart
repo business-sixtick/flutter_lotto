@@ -156,6 +156,36 @@ class Lotto{
     return <int>[int.parse(turn), DateTime(year, month, day).millisecondsSinceEpoch] + win;
   }
 
+  static List<int> drawWin(List<List<int>> list){
+    int weight = 5;
+    List<int> weights = List.generate(45, (_) => 1, growable: false);
+    for(var i = list.length - 1; i >= list.length - weight; i--){
+      for(var j = 2; j < 8; j++){
+        weights[list[i][j] - 1]++  ;
+        weights[list[i][j] - 1]++  ;
+      }
+    }
+    List<int> weightList = [];
+    for (var i = 1; i < 46; i++){
+      for (var j = weights[i - 1]; j > 0; j--){
+        weightList.add(i);
+      }
+    }
+
+    Set<int> win = {};
+    while(win.length < 6){
+      int num = math.Random().nextInt(weightList.length);
+      int selectNum = weightList[num];
+      win.add(selectNum);
+      do{
+        weightList.remove(selectNum);
+      }while(weightList.contains(selectNum));
+    }
+    List<int> wins  = win.toList();
+    wins.sort();
+    return wins;
+  }
+
   List<int> createWin(int weight){
     // int count = 0;
     List<int> weights = List.generate(45, (_) => 1, growable: false);

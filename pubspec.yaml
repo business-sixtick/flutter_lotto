@@ -5,6 +5,8 @@ description: >
   - 1.0.1: 번호 생성시 뽑은 번호 가중치에서 삭제후 다음 번호 뽑음
   - 1.0.2: 후원 이미지 삽입
   - 1.0.3: 로딩이 안되는 문제 해결차 메인 수정
+  - 1.0.4: 로딩이 안되는 문제 해결차 메인 수정. 에셋 로딩 테스트
+  - 1.0.5: 페이징 변경
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -22,8 +24,8 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
 
-# version: 1.0.2+4
-version: 1.0.3+5
+version: 1.0.5+8
+
 
 # flutter build appbundle --release -v   # 빌드 로그를 보여줌
 # flutter build appbundle --release 
@@ -54,6 +56,7 @@ dependencies:
   get: ^4.6.6
   path_provider: ^2.1.4
   path: ^1.9.0
+  provider: ^6.0.0
 
 dev_dependencies:
   flutter_test:

@@ -11,7 +11,7 @@ class LottoBall extends StatelessWidget{
     return Container(
       margin: EdgeInsets.all(2),
       decoration: BoxDecoration(
-        color: Colors.yellow,
+        color: ballColor(number),
         shape: BoxShape.circle,
         border: Border.all(color: Colors.grey),
       ),
@@ -28,4 +28,20 @@ class LottoBall extends StatelessWidget{
       // ) ,
       )); 
   }
+}
+
+Color ballColor(int num){
+  Color? color = Colors.grey;
+  if(num < 12){
+    color = Colors.orange[300];
+  }else if(num < 22){
+    color = Colors.lightBlue[300];
+  }else if(num < 32){
+    color = Colors.red[300];
+  }else if(num < 42){
+    color = Colors.grey[400];
+  }else{
+    color = Colors.green[300];
+  }
+  return color ?? Colors.grey;
 }
