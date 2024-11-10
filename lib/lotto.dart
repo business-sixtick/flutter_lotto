@@ -89,7 +89,7 @@ class Lotto{
     }else{// 없으면 파일 생성
       print('file.exists() 없음 생성');
       file = await file.create();
-      list = await _getListFromCSV();   // assets 에서 가져옴
+      list = await getListFromCSV();   // assets 에서 가져옴
       String csvString = const csv.ListToCsvConverter().convert(list); 
       await file.writeAsString(csvString, flush: true); // 파일 저장
     }
@@ -102,7 +102,7 @@ class Lotto{
     return Lotto._(list);
   } 
 
-  static Future<List<List<int>>> _getListFromCSV() async {
+  static Future<List<List<int>>> getListFromCSV() async {
     var csvData = await services.rootBundle.loadString('assets/lotto.csv');
 
     List<List<int>> rows = List<List<int>>.generate(csvData.split('\r\n').length, (index) => []);
