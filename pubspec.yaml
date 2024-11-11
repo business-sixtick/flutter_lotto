@@ -7,6 +7,7 @@ description: >
   - 1.0.3: 로딩이 안되는 문제 해결차 메인 수정
   - 1.0.4: 로딩이 안되는 문제 해결차 메인 수정. 에셋 로딩 테스트
   - 1.0.5: 페이징 변경
+  - 1.0.6: 볼 색깔 변경
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -24,8 +25,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
 
-version: 1.0.5+8
-
+version: 1.0.6+9
 
 # flutter build appbundle --release -v   # 빌드 로그를 보여줌
 # flutter build appbundle --release 
