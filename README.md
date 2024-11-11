@@ -1,7 +1,7 @@
 # 제목 : flutter_lotto
 ## 부제 : 플러터 기반의 로또 번호 생성기
 ### 작성자 : 조영훈
-### 연락처 : 텔레그램 t.me/sixtick
+### 연락처 : [텔레그램](https://t.me/sixtick)
 
 ***
 
