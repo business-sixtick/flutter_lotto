@@ -69,7 +69,7 @@ flutter create .
 ### 테스트 및 배포
 - #### google play console 개발자 계정 승인 대기중... 20241023
 - #### google play console 앱 등록 및 내부 테스트중... 20241030 (개인정보처리방침, 액세스권한, 광고, 컨텐츠등급, 타겟층, 뉴스앱, 데이터보안, 정부앱, 금융기능, 건강, 앱분류) ㄷㄷㄷ
-- #### google play console 테스터 20명 모집중... 20241111 (비공개 테스트) [앱공유](https://play.google.com/apps/test/RQFa_6trZsM/ahAO29uNTeBhTuYP6oRX8nSviWKcGeS_RAG9NXwk30xD1sp3-0S0Ac9zwIjsSfmcLbtFNCvJ7hFcTJ4jwIOm5LZqZW)
+- #### google play console 테스터 20명 모집중... 20241111 (비공개 테스트) [앱공유](https://play.google.com/store/apps/details?id=com.sixtick.flutter_lotto)
 ***
 
 ### 광고 삽입
