@@ -123,7 +123,7 @@ class Lotto{
     if (today - lately < nextTime) return list;
 
     while (today - lately > nextTime) {
-      var item = await _getFromHomepageWins(list.length + 1);
+      var item = await getFromHomepageWins(list.length + 1);
       list.add(item);
       lately = item[1];
     }
@@ -133,7 +133,7 @@ class Lotto{
     return list;
   }
 
-  static Future<List<int>> _getFromHomepageWins(int turnNum) async {
+  static Future<List<int>> getFromHomepageWins(int turnNum) async {
     var url = Uri.https('dhlottery.co.kr', 'gameResult.do',{'method': 'byWin'});
     var response = await http.post(
       url, 
