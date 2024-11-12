@@ -1,4 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 유저 수정 시작 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 유저 수정 끝 -->
+
     <application
         android:label="flutter_lotto"
         android:name="${applicationName}"

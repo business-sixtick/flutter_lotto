@@ -10,6 +10,7 @@ description: >
   - 1.0.6: 볼 색깔 변경
   - 1.0.7: 크롤링 테스트 버튼 생성.
   - 1.0.8: 모바일에서 pc버전 url로 크롤링이 안됨. 안드로이드 일 경우 모바일 주소로 접근하게 수정함.
+  - 1.0.9: errno 7 인터넷 사용자체를 거부당해서 크롤링이 안되는것 같음.  AndroidManifest.xml 에 인터넷 사용 권한 삽입 함. 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -27,7 +28,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
 
-version: 1.0.8+11
+version: 1.0.9+12
 
 # flutter build appbundle --release -v   # 빌드 로그를 보여줌
 # flutter build appbundle --release 
