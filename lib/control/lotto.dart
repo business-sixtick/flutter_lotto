@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' as services ;       //rootBundle.loadString
 import 'package:csv/csv.dart' as csv;
 import 'dart:io' as io;
@@ -134,7 +135,12 @@ class Lotto{
   }
 
   static Future<List<int>> getFromHomepageWins(int turnNum) async {
-    var url = Uri.https('dhlottery.co.kr', 'gameResult.do',{'method': 'byWin'});
+    var address = 'dhlottery.co.kr';
+    if (io.Platform.isAndroid){
+      address = 'm.dhlottery.co.kr';
+    }
+    debugPrint('io.Platform.operatingSystem : ${io.Platform.operatingSystem.toString()}');
+    var url = Uri.https(address, 'gameResult.do',{'method': 'byWin'});
     var response = await http.post(
       url, 
       body: {'drwNo': '$turnNum', 'hdrwComb': '1', 'dwrNoList' : '$turnNum'}
