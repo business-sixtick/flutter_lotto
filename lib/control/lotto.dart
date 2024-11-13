@@ -27,6 +27,24 @@ class Win {
     day = DateTime.fromMillisecondsSinceEpoch(date).toString();
   }
 
+  Win.formJson({required this.turn, required this.date, required this.win1, required this.win2, required this.win3,  required this.win4,
+    required this.win5, required this.win6, required this.win7}){
+    day = DateTime.fromMillisecondsSinceEpoch(date).toString();
+  }
+  Win.formMap(Map<String, Object?> item){
+    day = DateTime.fromMillisecondsSinceEpoch(item['date'] as int).toString();
+    turn = item['turn'] as int;
+    date = item['date'] as int;
+    win1 = item['win1'] as int;
+    win2 = item['win2'] as int;
+    win3 = item['win3'] as int;
+    win4 = item['win4'] as int;
+    win5 = item['win5'] as int;
+    win6 = item['win6'] as int;
+    win7 = item['win7'] as int;
+  }
+
+  
   Map<String, dynamic> toMap(){
     return {
       'turn' : turn,
