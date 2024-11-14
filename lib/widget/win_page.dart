@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lotto/widget/lotto_ball.dart';
 import '../control/lotto.dart';
+import '../control/lotto_sqflite.dart';
 
 class WinPage extends StatelessWidget {
   late List<List<int>> lottoList;
@@ -26,7 +27,8 @@ class WinPage extends StatelessWidget {
                 children: [
                   SizedBox(height: 50,),
                   FutureBuilder(
-                    future: Lotto.getFromHomepageWins(lottoList[lottoList.length - 1][0]), 
+                    // future: Lotto.getFromHomepageWins(lottoList[lottoList.length - 1][0]), 
+                    future: LottoDb.create(), 
                     builder: (BuildContext context, AsyncSnapshot snapshot){
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return CircularProgressIndicator(); // 로딩 중인 상태
@@ -37,7 +39,9 @@ class WinPage extends StatelessWidget {
                       }
                       // 데이터 로드 완료 시
                       else if (snapshot.hasData) {
-                        return Text(snapshot.data.toString() ?? '데이터가 없습니다');
+                        // return Text(snapshot.data.toString() ?? '데이터가 없습니다');
+                        LottoDb lottoDb = snapshot.data; 
+                        return Text(lottoDb.wins.length.toString() ?? '데이터가 없습니다');
                       }
                       // 기본 상태 처리
                       else {
@@ -86,7 +90,7 @@ class WinPage extends StatelessWidget {
               
             ),
             SizedBox(height: 50,),
-            ElevatedButton(onPressed: _bottomSheet, child: Text('크롤링 테스트'))
+            ElevatedButton(onPressed: _bottomSheet, child: Text('테스트'))
           ],
         ),
       ),

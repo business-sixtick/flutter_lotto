@@ -4,6 +4,10 @@ import 'package:flutter_lotto/widget/list_page.dart';
 import 'package:flutter_lotto/widget/win_page.dart';
 import 'control/lotto.dart';
 
+import 'package:firebase_core/firebase_core.dart'; // 추가
+import 'firebase_options.dart'; // 추가
+
+
 // late Lotto lotto;
 late List<List<int>> lottoList;
 void main() async {
@@ -11,6 +15,8 @@ void main() async {
       .ensureInitialized(); // Flutter 바인딩을 초기화  . path_provider 와 관계가 있다.
   lottoList = await Lotto.getListFromCSV();
   debugPrint(lottoList.length.toString());
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform); //추가
 
   // debugPrint('main in');
   // lotto = await Lotto.create();

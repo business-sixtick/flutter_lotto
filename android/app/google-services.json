@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "888263106503",
+    "project_id": "sixtick-flutter-lotto-v1",
+    "storage_bucket": "sixtick-flutter-lotto-v1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888263106503:android:3dfe213901e611058543e2",
+        "android_client_info": {
+          "package_name": "com.sixtick.flutter_lotto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_10cLvvEO3QQ62T82rGQPunlziY-Bitc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
