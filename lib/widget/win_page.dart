@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lotto/control/tool.dart';
 import 'package:flutter_lotto/widget/lotto_ball.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../control/lotto.dart';
 import '../control/lotto_sqflite.dart';
 
 class WinPage extends StatelessWidget {
   late List<List<int>> lottoList;
   WinPage(this.lottoList);
-
-  
+  late SharedPreferences prefs;
+  getPrefs() async{
+    prefs = await SharedPreferences.getInstance();
+  }
 
   @override
   Widget build(BuildContext context) {
+    getPrefs();
     _bottomSheet(){
       showModalBottomSheet(
         context: context, 
@@ -49,8 +54,8 @@ class WinPage extends StatelessWidget {
                       }
                     }),
                     SizedBox(height: 50,),
-                    ElevatedButton(onPressed: (){Navigator.of(context).pop();}, child: Text('닫기')),
-                    SizedBox(height: 20,)
+                    ElevatedButton(onPressed: (){Navigator.of(context).pop();}, child: Text('닫기')),                    
+                    SizedBox(height: 20,),
                 ],
               ),
             )
@@ -73,16 +78,19 @@ class WinPage extends StatelessWidget {
               '${DateTime.fromMillisecondsSinceEpoch(lottoList[lottoList.length -1][1]).toString().split(' ')[0]}',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: textSize,),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Expanded(child: LottoBall(lottoList[lottoList.length - 1][2])),
-                Expanded(child: LottoBall(lottoList[lottoList.length - 1][3])),
-                Expanded(child: LottoBall(lottoList[lottoList.length - 1][4])),
-                Expanded(child: LottoBall(lottoList[lottoList.length - 1][5])),
-                Expanded(child: LottoBall(lottoList[lottoList.length - 1][6])),
-                Expanded(child: LottoBall(lottoList[lottoList.length - 1][7])),
-              ],
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(child: LottoBall(lottoList[lottoList.length - 1][2])),
+                  Expanded(child: LottoBall(lottoList[lottoList.length - 1][3])),
+                  Expanded(child: LottoBall(lottoList[lottoList.length - 1][4])),
+                  Expanded(child: LottoBall(lottoList[lottoList.length - 1][5])),
+                  Expanded(child: LottoBall(lottoList[lottoList.length - 1][6])),
+                  Expanded(child: LottoBall(lottoList[lottoList.length - 1][7])),
+                ],
+              ),
             ),
             Text(
               '보너스 번호 : ${lottoList[lottoList.length - 1][8]}',
@@ -90,7 +98,9 @@ class WinPage extends StatelessWidget {
               
             ),
             SizedBox(height: 50,),
-            ElevatedButton(onPressed: _bottomSheet, child: Text('테스트'))
+            ElevatedButton(onPressed: _bottomSheet, child: Text('테스트')),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: ()=>showToast(prefs.getString('email') ?? '', context), child: Text('토스트 테스트')),
           ],
         ),
       ),

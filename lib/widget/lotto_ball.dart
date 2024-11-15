@@ -9,6 +9,7 @@ class LottoBall extends StatelessWidget{
     // debugPrint('height : '  + MediaQuery.of(context).size.height.toString());
     debugPrint('LottoBall : ' + MediaQuery.of(context).size.width.toString()); // 부모꺼임
     return Container(
+      width: MediaQuery.of(context).size.width,
       margin: EdgeInsets.all(2),
       decoration: BoxDecoration(
         color: ballColor(number),
@@ -18,7 +19,7 @@ class LottoBall extends StatelessWidget{
       child: LayoutBuilder(
         builder: (context, constraints) {
           debugPrint('constraints : ' + constraints.maxWidth.toString());
-          return Center(child: Text(number.toString(), style: TextStyle(fontSize: constraints.maxWidth / 1.5, fontWeight: FontWeight.bold)));
+          return Center(child: Text(number.toString(), style: TextStyle(fontSize: constraints.maxWidth * 0.7, fontWeight: FontWeight.bold)));
         },
       // width: context.size,
       // height: 50,

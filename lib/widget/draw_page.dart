@@ -56,16 +56,19 @@ class DrawList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var state = context.watch<DrawState>(); // state 가져오기
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Expanded(child: LottoBall(state.list[0])),
-        Expanded(child: LottoBall(state.list[1])),
-        Expanded(child: LottoBall(state.list[2])),
-        Expanded(child: LottoBall(state.list[3])),
-        Expanded(child: LottoBall(state.list[4])),
-        Expanded(child: LottoBall(state.list[5])),
-      ],
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Expanded(child: LottoBall(state.list[0])),
+          Expanded(child: LottoBall(state.list[1])),
+          Expanded(child: LottoBall(state.list[2])),
+          Expanded(child: LottoBall(state.list[3])),
+          Expanded(child: LottoBall(state.list[4])),
+          Expanded(child: LottoBall(state.list[5])),
+        ],
+      ),
     );
   }
 }

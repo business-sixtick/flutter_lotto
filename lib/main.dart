@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lotto/control/tool.dart';
 import 'package:flutter_lotto/widget/draw_page.dart';
 import 'package:flutter_lotto/widget/list_page.dart';
+import 'package:flutter_lotto/widget/login_page.dart';
 import 'package:flutter_lotto/widget/win_page.dart';
 import 'control/lotto.dart';
 
@@ -15,7 +17,8 @@ void main() async {
       .ensureInitialized(); // Flutter 바인딩을 초기화  . path_provider 와 관계가 있다.
   lottoList = await Lotto.getListFromCSV();
   debugPrint(lottoList.length.toString());
-
+  
+  await Preferences.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform); //추가
 
   // debugPrint('main in');
@@ -33,8 +36,8 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-  int _selectIndex = 1;
-  PageController _pageController = PageController(initialPage: 1, viewportFraction: 1);
+  int _selectIndex = 2;
+  PageController _pageController = PageController(initialPage: 2, viewportFraction: 2);
 
   void _onItemTapped(int index) {
     setState((){
@@ -58,6 +61,7 @@ class MyAppState extends State<MyApp> {
           controller: _pageController,
           onPageChanged: _onPageChanged,
           children: [
+            LoginPage(),
             DrawPage(lottoList),
             WinPage(lottoList),
             ListPage(lottoList),
@@ -66,7 +70,11 @@ class MyAppState extends State<MyApp> {
         // floatingActionButton: FloatingActionButton(onPressed: (){}, child: const Icon(Icons.add),),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.shifting,
-          items: [
+          items: const [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.login),
+                label: '로그인',
+                backgroundColor: Colors.lightBlue),
             BottomNavigationBarItem(
                 icon: Icon(Icons.settings),
                 label: '추천번호',
