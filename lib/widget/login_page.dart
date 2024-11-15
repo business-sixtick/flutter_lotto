@@ -15,32 +15,80 @@ class _LoginPageState extends State<LoginPage> {
 
   String? password;
 
+  // 로그인 상태가 와야함 TODO
   // late SharedPreferences prefs;
 
   @override
   void initState() {
     super.initState();
-    // getPrefs();
   }
 
-  // getPrefs() async {
-  //   prefs = await SharedPreferences.getInstance().then((onValue) {
-  //     setState(() {
-  //       email = onValue.getString('email') ?? '';
-  //       password = onValue.getString('password') ?? '';
-  //     });
-  //     return onValue;
-  //   });
-  // }
 
-  signUp() async {
-    // try{
-    //   await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password)
-    // }
-  }
+  
 
   @override
   Widget build(BuildContext context) {
+
+    signUp() async {
+      try{
+        debugPrint('$email : $password');
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email ?? '', password: password ?? '')
+        .then((value){
+          if(value.user!.email != null){
+            FirebaseAuth.instance.currentUser?.sendEmailVerification();
+          }
+          return value;
+        });
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password'){
+          showToast('좀 더 강력한 패스워드를 작성하세요', context);
+        }else if (e.code == 'email-already-in-use'){
+          showToast('이미 등록된 이메일입니다.', context);
+        }else{
+          showToast('other error ${e.toString()}', context);
+        }
+      } catch (e) {
+        debugPrint(e.toString());
+      }
+    }
+
+    signIn() async {
+      try{
+        await FirebaseAuth.instance.signInWithEmailAndPassword(email: email ?? '', password: password ?? '')
+        .then((value){
+          debugPrint(value.toString());
+          if (value.user!.emailVerified){
+            // 이메일 인증됨
+            showToast('환영합니다 ${email?.split('@')[0]}님', context);
+          }else{
+            showToast('이메일이 인증되지 않았습니다.', context);
+          }
+          return value;
+        });
+
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found'){
+          showToast('사용자를 찾을 수 없습니다.', context);
+        }else if (e.code == 'wrong-password'){
+          showToast('패스워드가 틀렸습니다.', context);
+        }else{
+          showToast('other error ${e.toString()}', context);
+        }
+      } catch (e) {
+        debugPrint(e.toString());
+      }
+    }
+
+    signOut() async {
+      try{
+        await FirebaseAuth.instance.signOut(); // void 리턴이네? 
+      } catch (e) {
+        debugPrint(e.toString());
+      }
+      // 아무일 없으면 로그아웃한것으로 ~ ㅋ
+      // 로그인 상태를 변경해줘야한다 TODO
+    }
+
     // 로그인 되어있으면 확인창으로 아니면 로그인창으로 분기 코드 TODO
     return Center(
       child: Column(
@@ -66,7 +114,10 @@ class _LoginPageState extends State<LoginPage> {
                         }
                         return null;
                       },
-                      onSaved: (newValue) => email = newValue ?? '',
+                      onSaved: (newValue) {
+                        email = newValue ?? '';
+                        Preferences.setString('email', newValue ?? '');
+                      }
                     ),
                     SizedBox(
                       height: 10,
@@ -81,7 +132,10 @@ class _LoginPageState extends State<LoginPage> {
                         }
                         return null;
                       },
-                      onSaved: (newValue) => password = newValue ?? '',
+                      onSaved: (newValue) {
+                        password = newValue ?? '';
+                        Preferences.setString('password', newValue ?? '');
+                      }
                     ),
                     SizedBox(
                       height: 30,
@@ -101,10 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () async {
                       if (_formKey.currentState?.validate() ?? false) {
                         _formKey.currentState?.save();
-                        showToast(
-                            'email : $email \r\npasswod : $password', context);
-                        await Preferences.setString('email', email ?? '');
-                        await Preferences.setString('password', password ?? '');
+                        signUp();
                       }
                     },
                     child: const Text('가입')),
@@ -115,9 +166,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       if (_formKey.currentState?.validate() ?? false) {
                         _formKey.currentState?.save();
-                        showToast(
-                            'email : ${Preferences.getString('email')} \r\npasswod : ${Preferences.getString('password')}',
-                            context);
+                        signIn();
                       }
                     },
                     child: const Text('로그인')),

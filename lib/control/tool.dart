@@ -6,7 +6,8 @@ void showToast(String massage, BuildContext context){
   FlutterToastr.show(
     massage, 
     context, 
-    duration: FlutterToastr.lengthShort, 
+    // duration: FlutterToastr.lengthShort, 
+    duration: 3,
     position:  FlutterToastr.bottom,
     backgroundColor: Colors.amber[100] ?? const Color(0xfffce1ac),
     textStyle: const TextStyle(color: Colors.black),
