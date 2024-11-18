@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lotto/control/tool.dart';
+import 'package:flutter_lotto/widget/button_increase.dart';
 import 'package:flutter_lotto/widget/lotto_ball.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../control/lotto.dart';
@@ -63,6 +64,7 @@ class WinPage extends StatelessWidget {
         });
     }
     double textSize = MediaQuery.of(context).size.width / 12;
+    debugPrint('win_page.dart load');
     return SingleChildScrollView(
       child: Center(
         child: Column(
@@ -101,6 +103,7 @@ class WinPage extends StatelessWidget {
             ElevatedButton(onPressed: _bottomSheet, child: Text('테스트')),
             SizedBox(height: 10,),
             ElevatedButton(onPressed: ()=>showToast(prefs.getString('email') ?? '', context), child: Text('토스트 테스트')),
+            Container(margin: EdgeInsets.only(top: 10), child: ButtonIncrease(useSave: true)),
           ],
         ),
       ),

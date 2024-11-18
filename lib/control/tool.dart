@@ -31,4 +31,12 @@ class Preferences{
     await _prefs?.setString(key, value);
   }
 
+  static int? getInt(String key){
+    return _prefs?.getInt(key);
+  }
+
+  static Future<void> setInt(String key, int value) async {
+    await _prefs?.setInt(key, value);
+  }
+
 }

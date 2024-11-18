@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../control/tool.dart';
 
 class LoginPage extends StatefulWidget {
@@ -39,6 +38,9 @@ class _LoginPageState extends State<LoginPage> {
           }
           return value;
         });
+        setState(() {
+              
+            });
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password'){
           showToast('좀 더 강력한 패스워드를 작성하세요', context);
@@ -60,12 +62,14 @@ class _LoginPageState extends State<LoginPage> {
           if (value.user!.emailVerified){
             // 이메일 인증됨
             showToast('환영합니다 ${email?.split('@')[0]}님', context);
+            setState(() {
+              
+            });
           }else{
             showToast('이메일이 인증되지 않았습니다.', context);
           }
           return value;
         });
-
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found'){
           showToast('사용자를 찾을 수 없습니다.', context);
@@ -82,6 +86,10 @@ class _LoginPageState extends State<LoginPage> {
     signOut() async {
       try{
         await FirebaseAuth.instance.signOut(); // void 리턴이네? 
+        showToast('로그아웃', context);
+        setState(() {
+              
+            });
       } catch (e) {
         debugPrint(e.toString());
       }
@@ -90,6 +98,20 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     // 로그인 되어있으면 확인창으로 아니면 로그인창으로 분기 코드 TODO
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null){  // 로그인
+      return Center( // 환영 메시지, 로그아웃 버튼
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('${user.email?.split("@")[0]}님 환영합니다.'),
+            ElevatedButton(onPressed: (){signOut(); }, child: const Text('로그아웃'))
+          ],
+        ),
+      );  
+    }else{ // 로그오프
+
+    }
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
