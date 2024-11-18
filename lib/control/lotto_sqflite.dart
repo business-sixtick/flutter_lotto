@@ -63,7 +63,7 @@ class LottoDb{
     final int nextTime = const Duration(days: 7, hours:21).inMilliseconds;
     // if (today - lately < nextTime) return list;
     while (today - lately > nextTime) {
-      // print('while in');
+      print('while in');
       var win = await Lotto.getFromHomepageWins(wins.length + 1);
       wins.add(Win(win[0], win[1], win[2], win[3], win[4], win[5], win[6], win[7], win[8]));
       await db.insert('lotto', {'turn': win[0], 'date': win[1], 'win1': win[2], 'win2': win[3], 'win3': win[4], 'win4': win[5], 'win5': win[6], 'win6': win[7], 'win7': win[8]});

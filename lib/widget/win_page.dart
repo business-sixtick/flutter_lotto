@@ -46,7 +46,9 @@ class WinPage extends StatelessWidget {
                       // 데이터 로드 완료 시
                       else if (snapshot.hasData) {
                         // return Text(snapshot.data.toString() ?? '데이터가 없습니다');
+                        
                         LottoDb lottoDb = snapshot.data; 
+                        debugPrint('lottoDb last : ${lottoDb.wins.last.toMap().values.toList().toString()}');
                         return Text(lottoDb.wins.length.toString() ?? '데이터가 없습니다');
                       }
                       // 기본 상태 처리

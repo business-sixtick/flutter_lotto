@@ -9,9 +9,7 @@ class ButtonIncrease extends StatefulWidget{
 }
 
 class _ButtonIncreaseState extends State<ButtonIncrease>{
-  
-  // _ButtonIncreaseState(this.useSave);
-  // final bool useSave;
+  // State<ButtonIncrease> 에서 T get widget 이 있다. widget.useSave 이렇게 상위 맴버에 접근 할 수 있다. 
   int increaseState = 0;
   @override
   Widget build(BuildContext context) {
@@ -20,8 +18,17 @@ class _ButtonIncreaseState extends State<ButtonIncrease>{
     }
     return ElevatedButton(onPressed: (){setState(() {
       increaseState++;
-      Preferences.setInt('increaseState', increaseState);
-    });}, child: Text('$increaseState'));
+      if(widget.useSave) Preferences.setInt('increaseState', increaseState);
+      });}, 
+      child: Text('$increaseState'),
+      onLongPress: () {
+        setState(() {
+          increaseState = 0;
+          if(widget.useSave) Preferences.setInt('increaseState', increaseState);
+        });
+
+      },
+    );
   }
 
 }

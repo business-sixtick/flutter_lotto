@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lotto/control/tool.dart';
 import 'package:flutter_lotto/widget/draw_page.dart';
+import 'package:flutter_lotto/widget/firestore_page.dart';
 import 'package:flutter_lotto/widget/list_page.dart';
 import 'package:flutter_lotto/widget/login_page.dart';
 import 'package:flutter_lotto/widget/win_page.dart';
@@ -15,7 +16,9 @@ late List<List<int>> lottoList;
 void main() async {
   WidgetsFlutterBinding
       .ensureInitialized(); // Flutter 바인딩을 초기화  . path_provider 와 관계가 있다.
-  lottoList = await Lotto.getListFromCSV();
+  // lottoList = await Lotto.getListFromCSV();
+  Lotto lotto = await Lotto.create();
+  lottoList = lotto.wins;
   debugPrint(lottoList.length.toString());
   
   await Preferences.init();
@@ -65,6 +68,7 @@ class MyAppState extends State<MyApp> {
             DrawPage(lottoList),
             WinPage(lottoList),
             ListPage(lottoList),
+            FirestorePage(),
           ],
         ),
         // floatingActionButton: FloatingActionButton(onPressed: (){}, child: const Icon(Icons.add),),
@@ -87,6 +91,10 @@ class MyAppState extends State<MyApp> {
                 icon: Icon(Icons.list),
                 label: '당첨이력',
                 backgroundColor: Colors.lightBlue),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.store),
+              label: '파이어스토어',
+              backgroundColor: Colors.lightBlue),
             // BottomNavigationBarItem(icon: Icon(Icons.school), label: 'Third', backgroundColor: Colors.purple),
             // BottomNavigationBarItem(icon: Icon(Icons.heart_broken), label: 'Fourth', backgroundColor: Colors.pink),
           ],

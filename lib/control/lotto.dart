@@ -85,11 +85,11 @@ class Lotto{
 
 
     List<List<int>> list = [<int>[]];
-    print('directory : ${directory.path}');
+    debugPrint('directory : ${directory.path}');
     var file = io.File(path.join(directory.path, '.lotto.csv'));
 
     if (await file.exists()){// 있으면 로딩
-      print('file.exists() file.path : ${file.path}');
+      debugPrint('file.exists() file.path : ${file.path}');
       String csvString = await file.readAsString();
       List<List<dynamic>> listDynamic = const csv.CsvToListConverter().convert<dynamic>(csvString);
       list = listDynamic.map((row) {
@@ -106,14 +106,14 @@ class Lotto{
         }).toList();
       }).toList();
     }else{// 없으면 파일 생성
-      print('file.exists() 없음 생성');
+      debugPrint('file.exists() 없음 생성');
       file = await file.create();
       list = await getListFromCSV();   // assets 에서 가져옴
       String csvString = const csv.ListToCsvConverter().convert(list); 
       await file.writeAsString(csvString, flush: true); // 파일 저장
     }
     
-    print('file.path : ${file.path}');
+    debugPrint('file.path : ${file.path}');
 
     // 데이터 업데이트 
     list = await _updateWins(list, file); // 갱신데이터가 있는지 검사
